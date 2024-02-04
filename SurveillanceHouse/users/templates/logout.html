@@ -1,0 +1,7 @@
+{% extends 'base.html' %} {# Assuming you have a base template #}
+
+{% block content %}
+  <h2>Logout</h2>
+  <p>You have been successfully logged out.</p>
+  <p>Want to log in again? <a href="{% url 'login' %}">Login here</a>.</p>
+{% endblock %}

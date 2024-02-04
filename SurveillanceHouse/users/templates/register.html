@@ -1,0 +1,65 @@
+<!-- register.html -->
+
+{% extends 'base.html' %} {# Assuming you have a base template #}
+
+{% block content %}
+  <div class="container h-100">
+    <h2 class="text-uppercase text-center"> Sign Up for Free</h2>
+    <form method="post" action="{% url 'register' %}" id="signup-form" class="authentication">
+      {% csrf_token %}
+      {% if form.errors %}
+            <div class="alert alert-danger" role="alert">
+              Oops! There are errors in the form. Please fix them and try again.
+              <ul>
+                {% for field, errors in form.errors.items %}
+                  {% for error in errors %}
+                    <li>{{ field }}: {{ error }}</li>
+                  {% endfor %}
+                {% endfor %}
+              </ul>
+            </div>
+          {% endif %}
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="username">Your Username<span class="req">*</span></label>
+            <input type="text" class="form-control" id="username" name="username" required data-validation-required-message="Please enter your username." autocomplete="off">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="form-group">
+            <label for="email">Your Email<span class="req">*</span></label>
+            <input type="email" class="form-control" id="email" name="email" required data-validation-required-message="Please enter your email address." autocomplete="off">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="form-group">
+            <label for="phone">Your Phone<span class="req">*</span></label>
+            <input type="tel" class="form-control" id="phone" name="phone" required data-validation-required-message="Please enter your phone number." autocomplete="off">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="form-group">
+            <label for="password1">Password<span class="req">*</span></label>
+            <input type="password" class="form-control" id="password1" name="password1" required data-validation-required-message="Please enter your password." autocomplete="off">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+        <div class="col-xs-12 col-sm-6">
+          <div class="form-group">
+            <label for="password2">Confirm Password<span class="req">*</span></label>
+            <input type="password" class="form-control" id="password2" name="password2" required data-validation-required-message="Please confirm your password." autocomplete="off">
+            <p class="help-block text-danger"></p>
+          </div>
+        </div>
+      </div>
+      <div class="mrgn-30-top text-center">
+        <button type="submit" class="btn btn-larger btn-block">Sign up</button>
+      </div>
+    </form>
+    <p class="text-center">Already have an account? <a href="{% url 'login' %}">Login here</a>.</p>
+  </div>
+{% endblock %}
