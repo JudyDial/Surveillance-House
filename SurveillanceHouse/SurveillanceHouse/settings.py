@@ -56,7 +56,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'SurveillanceHouse.urls'
-LOGIN_REDIRECT_URL = '/index/'  # Replace '/dashboard/' with your desired URL
+LOGIN_REDIRECT_URL = 'index'  # Replace '/dashboard/' with your desired URL
 
 TEMPLATES = [
     {
@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'SurveillanceHouse',
         'USER': 'root',
-        'PASSWORD': 'benjamin8393',
+        'PASSWORD': 'Benjamin8393.',
         'HOST': 'localhost',  # Set to the address of your MySQL server
         'PORT': '3306',       # Set to the port of your MySQL server
     }

@@ -10,22 +10,30 @@ class Certification(models.Model):
 
 
 class Model(models.Model):
-    model_name = models.CharField(max_length=100)
-    model_image = models.ImageField(upload_to='model_images/', null=True, blank=True)
-
+    model_name = models.CharField(max_length=100 ,unique=True)
 
     def __str__(self):
         return self.model_name
 
+from django.db import models
 
 class Item(models.Model):
+    ITEM_TYPE_CHOICES = [
+        ('wire-free cameras', 'Wire-Free Cameras'),
+        ('indoor wi-Fi cameras', 'Indoor Wi-Fi Cameras'),
+        ('outdoor wi-Fi cameras', 'Outdoor Wi-Fi Cameras'),
+        # Add more choices as needed
+    ]
+
     item_name = models.CharField(max_length=100)
     details = models.TextField()
-    specifications = models.ForeignKey(Model, on_delete=models.CASCADE, null=True, blank=True)
-    
+    item_type = models.CharField(max_length=100, choices=ITEM_TYPE_CHOICES, null=True, blank=True)
+    Item_model = models.ForeignKey(Model, on_delete=models.CASCADE, null=True, blank=True)
+    model_image = models.ImageField(upload_to='model_images/', null=True, blank=True)
 
     def __str__(self):
         return self.item_name
+
 
 
 class Camera(models.Model):

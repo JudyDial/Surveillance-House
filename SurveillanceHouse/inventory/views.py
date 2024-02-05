@@ -15,12 +15,12 @@ class ItemDetailView(DetailView):
 class ItemCreateView(CreateView):
     model = Item
     template_name = 'inventory/item_form.html'
-    fields = ['item_name', 'details', 'specifications']
+    fields = ['item_name', 'details', 'model']
 
 class ItemUpdateView(UpdateView):
     model = Item
     template_name = 'inventory/item_form.html'
-    fields = ['item_name', 'details', 'specifications']
+    fields = ['item_name', 'details', 'model']
 
 class ItemDeleteView(DeleteView):
     model = Item
@@ -29,7 +29,7 @@ class ItemDeleteView(DeleteView):
 
 def get_item_details(request, model_id):
     model = get_object_or_404(Model, id=model_id)
-    item = get_object_or_404(Item, specifications=model)
+    item = get_object_or_404(Item, model=model)
     camera = model.camera_set.first()  # Assuming a related_name of 'camera' in Model
     video_audio = model.videoaudio_set.first()  # Assuming a related_name of 'videoaudio' in Model
     network = model.network_set.first()  # Assuming a related_name of 'network' in Model
