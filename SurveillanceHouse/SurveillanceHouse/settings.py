@@ -81,10 +81,16 @@ WSGI_APPLICATION = 'SurveillanceHouse.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
+# settings.py
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'SurveillanceHouse',
+        'USER': 'root',
+        'PASSWORD': 'benjamin8393',
+        'HOST': 'localhost',  # Set to the address of your MySQL server
+        'PORT': '3306',       # Set to the port of your MySQL server
     }
 }
 

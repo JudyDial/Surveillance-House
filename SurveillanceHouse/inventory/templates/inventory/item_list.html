@@ -1,0 +1,45 @@
+<!-- inventory/templates/inventory/item_list.html -->
+
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %}
+  <section id="portfolio" class="portfolio">
+    <div class="container">
+
+      <div class="section-title">
+        <span>Shop</span>
+        <h2>Shop</h2>
+        <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+      </div>
+
+      <div class="row" data-aos="fade-up">
+        <div class="col-lg-12 d-flex justify-content-center">
+          <ul id="portfolio-flters">
+            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=".filter-app">App</li>
+            <li data-filter=".filter-card">Card</li>
+            <li data-filter=".filter-web">Web</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="150">
+        
+          {% for item in object_list %}
+            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+              <img src="{{ item.specifications.model_image.url }}" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>{{ item.item_name }}</h4>
+                <p>{{ item.details }}</p>
+                <a href="{% url 'item_detail' pk=item.pk %}"  %}" data-gallery="ItemsGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                <a href="{% url 'get_item_details' model_id=item.specifications.id %}"" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+              </div>
+            </div>
+          {% endfor %}
+      </div>
+
+    </div>
+  </section><!-- End Portfolio Section -->
+  <a href="{% url 'item_create' %}">Create a new item</a>
+{% endblock %}
