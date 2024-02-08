@@ -60,9 +60,9 @@
           <li><a class="nav-link scrollto active" href="{% url 'index' %}#hero">Home</a></li>
           <li><a class="nav-link scrollto" href="{% url 'index' %}#about">About</a></li>
           <li><a class="nav-link scrollto" href="{% url 'index' %}#services">Services</a></li>
-          <li><a class="nav-link scrollto " href="{% url 'item_list' %}">Shop</a></li>
-          <li><a class="nav-link scrollto" href="{% url 'index' %}#pricing">Pricing</a></li>
-          
+          <!-- <li><a class="nav-link scrollto" href="{% url 'index' %}#pricing">Pricing</a></li> -->
+          <li><a class="nav-link scrollto " href="{% url 'item_list' %}">Products</a></li>
+
           <li><a class="nav-link scrollto" href="{% url 'index' %}#contact">Contact</a></li>
           {% if user.is_authenticated %}
           <li><span class="nav-link">Welcome, {{ user.username }}</span></li>
@@ -95,7 +95,8 @@
                 Goodhope Plaza, Shop 109 <br>
                 Nairobi, KENYA<br><br>
                 <strong>Phone:</strong> +254 703844441<br>
-                <strong>Email:</strong> Jusawesam@icloud.com<br>
+                <strong><i class="bi bi-envelope-fill"></i><a href="mailto:Jusawesam@icloud.com">Jusawesam@icloud.com</a>
+                </strong><br>
               </p>
               
               <div class="social-links mt-3">
@@ -130,11 +131,13 @@
           <div class="col-lg-4 col-md-6 footer-newsletter">
             <h4>Our Newsletter</h4>
             <p>Subscribe now and join a community dedicated to enhancing security, receiving valuable tips, and enjoying special offers. Your security journey starts with The Surveillance House!!</p>
-            <form action="" method="post">
-              <input type="email" name="email"><input type="submit" value="Subscribe">
+            <form id="newsletter-form" method="post">
+                {% csrf_token %}
+                <input type="email" name="email" id="email">
+                <input type="submit" value="Subscribe">
             </form>
-
-          </div>
+        </div>
+        
 
         </div>
       </div>
@@ -165,6 +168,28 @@
 
   <!-- Template Main JS File -->
   <script src="{% static "assets/js/main.js" %}"></script>
+  <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+  <script>
+    $(document).ready(function () {
+        $('#newsletter-form').submit(function (e) {
+            e.preventDefault();
+            
+            $.ajax({
+                type: 'POST',
+                url: '{% url "subscribe_newsletter" %}',
+                data: {
+                    'email': $('#email').val(),
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val(),
+                },
+                success: function (data) {
+                    alert(data.message);
+                },
+            });
+        });
+    });
+</script>
+
+
 
 </body>
 

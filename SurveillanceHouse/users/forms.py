@@ -9,3 +9,5 @@ class YourCustomRegistrationForm(UserCreationForm):
     class Meta:
         model = CustomUser
         fields = ['username', 'email', 'password1', 'password2', 'phone_number', 'region']
+class NewsletterSubscriptionForm(forms.Form):
+    email = forms.EmailField(label='Email', widget=forms.EmailInput(attrs={'placeholder': 'Enter your email'}))

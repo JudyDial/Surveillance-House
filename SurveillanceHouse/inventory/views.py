@@ -2,7 +2,7 @@
 from django.shortcuts import render, get_object_or_404
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from .models import Item, Model
+from .models import *
 
 class ItemListView(ListView):
     model = Item
@@ -27,15 +27,15 @@ class ItemDeleteView(DeleteView):
     template_name = 'inventory/item_confirm_delete.html'
     success_url = reverse_lazy('item_list')
 
-def get_item_details(request, model_id):
+def get_item_details(request, model_id, item_id):
     model = get_object_or_404(Model, id=model_id)
-    item = get_object_or_404(Item, model=model)
-    camera = model.camera_set.first()  # Assuming a related_name of 'camera' in Model
-    video_audio = model.videoaudio_set.first()  # Assuming a related_name of 'videoaudio' in Model
-    network = model.network_set.first()  # Assuming a related_name of 'network' in Model
-    general = camera.general  # Assuming a related_name of 'general' in Camera model
+    item = get_object_or_404(Item, id=item_id)
+    camera = get_object_or_404(Camera, model=model_id)
+    video_audio = get_object_or_404(VideoAudio, model=model_id)
+    network = get_object_or_404(Network, model=model_id)
+    general = get_object_or_404(General, camera=model_id)
 
-    return render(request, 'inventory/item_details.html', {
+    return render(request, 'inventory/item_detail.html', {
         'model': model,
         'item': item,
         'camera': camera,
@@ -43,3 +43,6 @@ def get_item_details(request, model_id):
         'network': network,
         'general': general,
     })
+
+
+

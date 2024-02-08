@@ -9,17 +9,17 @@
 
       <div class="section-title">
         <span>Shop</span>
-        <h2>Shop</h2>
-        <p>Sit sint consectetur velit quisquam cupiditate impedit suscipit alias</p>
+        <h2>Our products</h2>
+        <p>See What's in Store</p>
       </div>
 
       <div class="row" data-aos="fade-up">
         <div class="col-lg-12 d-flex justify-content-center">
           <ul id="portfolio-flters">
             <li data-filter="*" class="filter-active">All</li>
-            <li data-filter=".filter-app">App</li>
-            <li data-filter=".filter-card">Card</li>
-            <li data-filter=".filter-web">Web</li>
+            <li data-filter=".filter-wire">Wire-Free Cameras</li>
+            <li data-filter=".filter-indoor">Indoor Wi-Fi Cameras</li>
+            <li data-filter=".filter-outdoor">Outdoor Wi-Fi Cameras</li>
           </ul>
         </div>
       </div>
@@ -27,13 +27,13 @@
       <div class="row portfolio-container" data-aos="fade-up" data-aos-delay="150">
         
           {% for item in object_list %}
-            <div class="col-lg-4 col-md-6 portfolio-item filter-app">
+            <div class="col-lg-4 col-md-6 portfolio-item filter-{{ item.item_type }} ">
               <img src="{{ item.model_image.url }}" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>{{ item.item_name }}</h4>
                 <p>{{ item.details }}</p>
-                <a href="{% url 'item_detail' pk=item.pk %}"  %}" data-gallery="ItemsGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                <a href="{% url 'get_item_details' model_id=item.item_model.id %}"" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                <a href="{{ item.model_image.url }}" data-gallery="{{ item.item_type }}" class="portfolio-lightbox preview-link" title="{{ item.item_name }} - {{ item.details }}"><i class="bx bx-plus"></i></a>
+                <a href="{% url 'get_item_details' model_id=item.Item_model.pk item_id=item.pk %}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
           {% endfor %}
@@ -41,5 +41,4 @@
 
     </div>
   </section><!-- End Portfolio Section -->
-  <a href="{% url 'item_create' %}">Create a new item</a>
 {% endblock %}

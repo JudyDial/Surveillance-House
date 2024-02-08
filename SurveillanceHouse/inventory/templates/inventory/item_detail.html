@@ -1,0 +1,112 @@
+<!-- inventory/templates/inventory/item_detail.html -->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <section id="portfolio-details" class="portfolio-details">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-6">
+            <img src="{{ item.model_image.url }}" class="img-fluid" alt="">
+            </div>
+
+            <div class="col-lg-6">
+                <div class="portfolio-info">
+                    <h3>{{ item.item_name }}</h3>
+                    <ul>
+                    <li><strong>Details:</strong> {{ item.details }}</li>
+                    <li><strong>Model:</strong> {{ model.model_name }}</li>
+                    <!-- Add more details as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+      
+        <div class="row">
+            <!-- General Specifications -->
+            <div class="col-lg-6">
+                <div class="portfolio-info">
+                    <h3>General Specifications</h3>
+                    <ul>
+                        <li><strong>Operating Conditions (Temperature):</strong> {{general.operating_conditions_temperature }}</li>
+                        <li><strong>Operating Conditions (Humidity):</strong> {{general.operating_conditions_humidity }}</li>
+                        <li><strong>IP Grade:</strong> {{ general.ip_grade }}</li>
+                        <li><strong>Package Dimensions:</strong> {{ general.package_dimensions }}</li>
+                        <li><strong>Weight (Camera):</strong> {{ general.weight_camera }}</li>
+                        <li><strong>Weight (Base):</strong> {{ general.weight_base }}</li>
+                        <li><strong>Weight (With Package):</strong> {{ general.weight_with_package }}</li>
+                        <li><strong>Power Supply (Base):</strong> {{ camera.power_supply_base }}</li>
+                        <!-- Add more General details as needed -->
+                    </ul>
+                    
+                </div>
+            </div>
+            <!-- Video & Audio Details -->
+            <div class="col-lg-6">
+                <div class="portfolio-info">
+                    <h3>Video & Audio Details</h3>
+                    <ul>
+                        <li><strong>Max Resolution:</strong> {{ video_audio.max_resolution }}</li>
+                        <li><strong>Frame Rate:</strong> {{ video_audio.frame_rate }}</li>
+                        <li><strong>Video Compression:</strong> {{ video_audio.video_compression }}</li>
+                        <li><strong>Video Bit Rate:</strong> {{ video_audio.video_bit_rate }}</li>
+                        <li><strong>Audio Bit Rate:</strong> {{ video_audio.audio_bit_rate }}</li>
+                        <li><strong>Max Bitrate:</strong> {{ video_audio.max_bitrate }}</li>
+                        <li><strong>Day/Night:</strong> {{ camera.day_night }}</li>
+                        <li><strong>DNR:</strong> {{ camera.dnr }}</li>
+                        
+                        <!-- Add more Video & Audio details as needed -->
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            
+            <!-- Camera Details -->
+            <div class="col-lg-6">
+                <div class="portfolio-info">
+                    <h3>Camera Details</h3>
+                    <ul>
+                        <li><strong>Image Sensor:</strong> {{ camera.image_sensor }}</li>
+                        <li><strong>Minimum Illumination:</strong> {{ camera.minimum_illumination }}</li>
+                        <li><strong>Shutter Speed:</strong> {{ camera.shutter_speed }}</li>
+                        <li><strong>Lens:</strong> {{ camera.lens }}</li>
+                        <li><strong>Battery Capacity:</strong> {{ camera.battery_capacity }}</li>
+                        <li><strong>Night Vision:</strong> {{ camera.night_vision }}</li>
+                        <li><strong>Local Storage:</strong> {{ camera.local_storage }}</li>
+                        <li><strong>Cloud Storage:</strong> {{ camera.cloud_storage }}</li>
+                        <li><strong>Power Supply (Camera):</strong> {{ camera.power_supply_camera }}</li>
+                        <li><strong>Power Consumption:</strong> {{ camera.power_consumption }}</li>
+                        <!-- Add more details as needed -->
+                    </ul>
+                </div>
+            </div>
+        
+        <!-- Network Details -->
+            <div class="col-lg-6">
+                <div class="portfolio-info">
+                <h3>Network Details</h3>
+                <ul>
+                        <li><strong>WiFi Standard:</strong> {{ network.wifi_standard }}</li>
+                        <li><strong>Frequency Range (US):</strong> {{ network.frequency_range_us }}</li>
+                        <li><strong>Frequency Range (EU):</strong> {{ network.frequency_range_eu }}</li>
+                        <li><strong>Channel Bandwidth (US):</strong> {{ network.channel_bandwidth_us }}</li>
+                        <li><strong>Channel Bandwidth (EU):</strong> {{ network.channel_bandwidth_eu }}</li>
+                        <li><strong>Security:</strong> {{ network.security }}</li>
+                        <li><strong>WiFi HA Low Pairing:</strong> {{ network.wifi_ha_low_pairing }}</li>
+                        <li><strong>Protocol:</strong> {{ network.protocol }}</li>
+                        <li><strong>Interface Protocol:</strong> {{ network.interface_protocol }}</li>
+                        <li><strong>Minimum Network Requirement:</strong> {{ network.minimum_network_requirement }}</li>
+                        <!-- Add more Network details as needed -->
+                </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+  </section><!-- End Portfolio Details Section -->
+{% endblock %}

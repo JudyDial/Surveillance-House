@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-hb_*i3s@(nkdqws-dmh_q+3s=)_aa(6o@-y=ku)6^=gyc026$p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -88,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'SurveillanceHouse',
         'USER': 'root',
-        'PASSWORD': 'Benjamin8393.',
+        'PASSWORD': 'benjamin8393',
         'HOST': 'localhost',  # Set to the address of your MySQL server
         'PORT': '3306',       # Set to the port of your MySQL server
     }

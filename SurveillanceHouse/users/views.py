@@ -3,10 +3,12 @@ from django.contrib.auth.views import LoginView, LogoutView
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView
 from django.urls import reverse_lazy
-from .models import CustomUser
-from .forms import YourCustomRegistrationForm
+from .models import CustomUser,NewsletterSubscriber
+from .forms import YourCustomRegistrationForm,NewsletterSubscriptionForm
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib import messages
+from django.http import JsonResponse
+
 
 
 
@@ -31,3 +33,21 @@ class UserLogoutView(LogoutView):
     template_name = 'home/index.html'
 def index(request):
     return render(request, 'home/index.html')
+
+def subscribe_newsletter(request):
+    if request.method == 'POST':
+        email = request.POST.get('email')
+
+        # Check if the email is already subscribed
+        if NewsletterSubscriber.objects.filter(email=email).exists():
+            message = 'You are already subscribed to the newsletter.'
+            return JsonResponse({'message': message, 'status': 'warning'})
+
+        subscriber = NewsletterSubscriber(email=email)
+        subscriber.save()
+        message = 'Subscription successful! Thank you for subscribing.'
+        return JsonResponse({'message': message, 'status': 'success'})
+
+    return JsonResponse({'message': 'Invalid request', 'status': 'error'})
+
+

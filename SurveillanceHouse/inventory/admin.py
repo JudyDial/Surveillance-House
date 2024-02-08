@@ -1,9 +1,8 @@
 # inventory/admin.py
 from django.contrib import admin
-from .models import Certification, Model, Item, Camera, VideoAudio, Network, General, InTheBox
+from .models import  Model, Item, Camera, VideoAudio, Network, General, InTheBox
 
 admin.site.register(Model)
-admin.site.register(Certification)
 admin.site.register(Network)
 admin.site.register(General)
 admin.site.register(InTheBox)
