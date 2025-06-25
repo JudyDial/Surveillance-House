@@ -69,9 +69,6 @@ SurveillanceHouse/
 7. **Access the app:**
    - Visit `http://127.0.0.1:8000/` in your browser.
 
-## 📸 Screenshots
-![SurveillanceHouse](https://github.com/user-attachments/assets/d3b83579-af8d-4fcc-8503-cc97d2573915)
-
 
 ## License
 
